@@ -20,6 +20,7 @@ class Vehiculo{
     }
 
     public function muestraResumen():void{
-        echo `<p>¨{$this->titulo} ({$this->numero}) -- Precio: {$this->precio} €</p>`;
+        echo $this->titulo. " ( ".$this->numero." ) || Precio: ". $this->precio ." €";
+
     }
 }
