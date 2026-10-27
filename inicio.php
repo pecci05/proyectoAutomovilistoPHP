@@ -3,6 +3,7 @@
 require_once "Vehiculo.php";
 require_once "Patinete.php";
 require_once "BicicletaElectrica.php";
+require_once "CocheElectrico.php";
 
 $vehiculo1 = new Vehiculo("Patinete Xiaomi Pro 2", 22, 3);
 echo "<strong>" . $vehiculo1->titulo . "</strong>";
@@ -24,6 +25,13 @@ echo "<strong>" . $miBici->titulo . "</strong>";
 echo "<br>Precio: " . $miBici->getPrecio() . " euros";
 echo "<br>Precio IVA incluido: " . $miBici->getPrecioConIva() . " euros</br>";
 echo "<br>".$miBici->muestraResumen()."</br>";
+
+$miCoche = new CocheElectrico("Tesla Model 3", 26, 49.99, "Tesla Model 3 Standard Range", 5, 5);
+echo "<strong>" . $miCoche->titulo . "</strong>";
+echo "<br>Precio: " . $miCoche->getPrecio() . " euros";
+echo "<br>Precio IVA incluido: " . $miCoche->getPrecioConIva() . " euros</br>";
+echo "<br>".$miCoche->muestraResumen()."</br>";
+
 
 
 

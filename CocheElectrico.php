@@ -18,16 +18,19 @@ class CocheElectrico extends Vehiculo
 
     public function muestraInfoPlazas(){
         $plazas = $this->plazasMax;
-        $resultado = match($plazas){
+        $resultado = match(true){
             $plazas == 1 => "Para un pasajero",
-
-        }
+            $plazas == $this->plazasMin => "Para ".$plazas . " pasajeros",
+            $plazas != 1 && $plazas > $this->plazasMin => "DE ".$this->plazasMin . " a " . $plazas . " pasajeros",
+            default => "Para un pasajero"
+        };
+        return $resultado;
     }
 
 
     public function muestraResumen(): void
     {
         echo parent::muestraResumen() . " || Marca y modelo: " . $this->marcaModelo .
-            " || Tipo de bicicleta:  " . $this->tipo;
+            " ||  " . $this->muestraInfoPlazas();
     }
 }
