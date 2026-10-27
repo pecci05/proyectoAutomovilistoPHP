@@ -1,0 +1,65 @@
+<?php
+
+require_once "Cliente.php";
+require_once "Vehiculo.php";
+require_once "CocheElectrico.php";
+require_once "BicicletaElectrica.php";
+require_once "Patinete.php";
+    class AlquilerMovilidad
+    {
+        private array $vehiculos = [];
+        private array $socios = [];
+
+        private function incluirVehiculo(Vehiculo $vehiculo)
+        {
+            $this->vehiculos[] = $vehiculo;
+        }
+
+        function incluirCocheElectrico(string $titulo,float $precio,string $marcaModelo,int $plazasMin,int $plazasMax)
+        {
+            $this->incluirVehiculo(new CocheElectrico($titulo,count($this->vehiculos),$precio,$marcaModelo,$plazasMin,$plazasMax));
+        }
+
+        function incluirBicicletaElectrica(string $titulo,float $precio,int $marchas,string $tipo)
+        {
+            $this->incluirVehiculo(new BicicletaElectrica($titulo,count($this->vehiculos),$precio,$marchas,$tipo));
+        }
+
+        function incluirPatinete(string $titulo,float $precio,int $autonomiaKm,int $velocidadMax = 0)
+        {
+            $this->incluirVehiculo(new Patinete($titulo,count($this->vehiculos),$precio,$autonomiaKm,$velocidadMax));
+        }
+
+        function listarVehiculos()
+        {
+            var_dump($this->vehiculos);
+        }
+
+        function incluirSocio(string $nombre, int $numMax = 3)
+        {
+            $this->socios[] = new Cliente($nombre,count($this->socios),$numMax);
+        }
+        function alquilarClienteVehiculo(int $numCliente, int $numVehiculo)
+        {
+            $vehiculo = array_values(array_filter($this->vehiculos,fn(Vehiculo $v) => $v->getNumero() == $numVehiculo));
+            $cliente = array_values(array_filter($this->socios,fn(Cliente $c) => $c->getNumero() == $numCliente));
+
+//            echo "HOLA <p>" . count($cliente) . "</p>";
+
+            if (count($vehiculo) != 0 && count($cliente) != 0){
+                $cliente[0]->alquilar($vehiculo[0]);
+            }else{
+                echo "<p>No se puede identificar al cliente/vehiculo</p>";
+            }
+        }
+
+        function listarSocios()
+        {
+            var_dump($this->socios);
+        }
+    }
+
+
+
+
+?>

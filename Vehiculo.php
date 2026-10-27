@@ -1,6 +1,6 @@
 <?php
 
-class Vehiculo
+abstract class Vehiculo
 {
     const float IVA = 0.21;
 
@@ -33,6 +33,8 @@ class Vehiculo
         echo $this->numero;
         echo $this->precio;
     }
+
+
 }
 
 ?>
