@@ -16,3 +16,17 @@ echo "<strong>" . $miPatinete->titulo . "</strong>";
 echo "<br>Precio: " . $miPatinete->getPrecio() . " euros";
 echo "<br>Precio IVA incluido: " . $miPatinete->getPrecioConIva() . " euros" . "<br>";
 $miPatinete->muestraResumen();
+echo "<br>";
+
+
+include "BicicletaElectrica.php";
+
+$miBici = new BicicletaElectrica("Bici Eléctrica Orbea Vibe", 24, 15, 3, "Urbana");
+echo "<strong>" . $miBici->titulo . "</strong>";
+echo "<br>Precio: " . $miBici->getPrecio() . " euros";
+echo "<br>Precio IVA incluido: " . $miBici->getPrecioConIva() . " euros" . "<br>";
+$miBici->muestraResumen();
+echo "<br>";
+
+
+
