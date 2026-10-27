@@ -39,7 +39,7 @@ class Cliente
 
     function alquilar(Vehiculo $v):bool
     {
-        if (in_array($v,$this->vehiculosAlquilados) && count($this->vehiculosAlquilados) == $this->maxAlquilerConcurrente) {
+        if (!in_array($v,$this->vehiculosAlquilados) && count($this->vehiculosAlquilados) <= $this->maxAlquilerConcurrente) {
             $this->numVehiculosAlquilados++;
             echo "<p> Se ha sumado 1 a vehiculos alquilados</p>";
             $this->vehiculosAlquilados[] = $v;
@@ -49,5 +49,24 @@ class Cliente
             echo "<p> No se puede alquilar el vehiculo </p>";
             return false;
         }
+    }
+
+    function devolver(int $numVehiculo):bool
+    {
+        $vehiculo = array_filter($this->vehiculosAlquilados,fn(Vehiculo $v) => $v->getNumero() == $numVehiculo);
+        $position = array_search($this->vehiculosAlquilados,$vehiculo);
+
+        if (in_array($vehiculo,$this->vehiculosAlquilados)){
+            array_splice($this->vehiculosAlquilados,$position,1);
+            $this->numVehiculosAlquilados--;
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function listaAlquileres():void
+    {
+        var_dump($this->vehiculosAlquilados);
     }
 }
