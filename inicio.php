@@ -29,4 +29,12 @@ $miBici->muestraResumen();
 echo "<br>";
 
 
+include "CocheElectrico.php";
+
+$miCoche = new CocheElectrico("Tesla Model 3", 26, 49.99, "Tesla Model 3 Standard Range", 5, 5);
+echo "<strong>" . $miCoche->titulo . "</strong>";
+echo "<br>Precio: " . $miCoche->getPrecio() . " euros";
+echo "<br>Precio IVA incluido: " . $miCoche->getPrecioConIva() . " euros";
+$miCoche->muestraResumen();
+
 
