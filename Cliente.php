@@ -26,10 +26,12 @@ class Cliente{
     }
 
     public function tieneAlquilado(Vehiculo $v) : bool {
-        foreach($this->vehiculosAlquilados as $vehiculo){
-            if($v == $vehiculo) return true;
-        }
-        return false;
+//        foreach($this->vehiculosAlquilados as $vehiculo){
+//            if($v == $vehiculo) return true;
+//        }
+//        return false;
+
+        return in_array($v, $this->vehiculosAlquilados, true);
     }
 
     public function alquilar(Vehiculo $v):bool{

@@ -1,9 +1,9 @@
 <?php
 class Patinete extends Vehiculo{
     public function  __construct(
-        public string $titulo,
-        private int $numero,
-        private float $precio,
+        string $titulo,
+        int $numero,
+        float $precio,
         private int $autonomiaKM,
         private int $velocidadMaxKMH
     )

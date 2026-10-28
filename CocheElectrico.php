@@ -4,9 +4,9 @@
 class CocheElectrico extends Vehiculo
 {
     public function __construct(
-        public string  $titulo,
-        private int    $numero,
-        private float  $precio,
+        string  $titulo,
+        int    $numero,
+        float  $precio,
         private string $marcaModelo,
         private int $plazasMin,
         private int $plazasMax

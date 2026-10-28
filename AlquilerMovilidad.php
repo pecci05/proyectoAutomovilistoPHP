@@ -5,8 +5,10 @@ require_once "Cliente.php";
 class AlquilerMovilidad{
     public function __construct(
         private string $direccion,
-        private array $vehiculos,
-        private array $socios
+        /** @var Vehiculo[] */
+        private array $vehiculos = [],
+        /** @var Cliente[] */
+        private array $socios = []
     ){}
 
 
