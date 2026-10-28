@@ -39,12 +39,12 @@ class Cliente
 
     function tieneAlquilado(Vehiculo $v): bool
     {
-        return in_array($v, $this->vehiculosAlquilados);
+        return in_array($v, $this->vehiculosAlquilados,true);
     }
 
     public function alquilar(Vehiculo $v): bool
     {
-        if (!in_array($v, $this->vehiculosAlquilados) && count($this->vehiculosAlquilados) <= $this->maxAlquilerConcurrente) {
+        if (!in_array($v, $this->vehiculosAlquilados,true) && count($this->vehiculosAlquilados) <= $this->maxAlquilerConcurrente) {
             $this->numVehiculosAlquilados++;
             echo "<p> Se ha sumado 1 a vehiculos alquilados</p>";
             $this->vehiculosAlquilados[] = $v;
@@ -61,7 +61,7 @@ class Cliente
         $vehiculo = array_filter($this->vehiculosAlquilados, fn(Vehiculo $v) => $v->getNumero() == $numVehiculo);
         $position = array_search($this->vehiculosAlquilados, $vehiculo);
 
-        if (in_array($vehiculo, $this->vehiculosAlquilados)) {
+        if (in_array($vehiculo, $this->vehiculosAlquilados,true)) {
             array_splice($this->vehiculosAlquilados, $position, 1);
             $this->numVehiculosAlquilados--;
             return true;

@@ -50,8 +50,10 @@ require_once "Patinete.php";
 
             if (count($vehiculo) != 0 && count($cliente) != 0){
                 $cliente[0]->alquilar($vehiculo[0]);
+                return $this;
             }else{
                 echo "<p>No se puede identificar al cliente/vehiculo</p>";
+                return $this;
             }
         }
 
