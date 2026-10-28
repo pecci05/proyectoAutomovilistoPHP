@@ -1,7 +1,13 @@
 <?php
-require_once "Resumible.php";
+namespace Dwes\AlquilerMovilidad;
+require_once "Dwes/AlquilerMovilidad/Resumible.php";
+
+use Dwes\AlquilerMovilidad\Resumible as Resumible;
+
 abstract class Vehiculo implements Resumible
+
 {
+
     const float IVA = 0.21;
 
     public function __construct(

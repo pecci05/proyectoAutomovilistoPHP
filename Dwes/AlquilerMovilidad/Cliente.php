@@ -1,4 +1,6 @@
 <?php
+namespace Dwes\AlquilerMovilidad;
+
 
 class Cliente
 {

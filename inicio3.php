@@ -1,6 +1,6 @@
 <?php
 
-include_once "AlquilerMovilidad.php"; // No incluimos nada más
+include_once "Dwes/AlquilerMovilidad/AlquilerMovilidad.php"; // No incluimos nada más
 
 $am = new AlquilerMovilidad("Severo 8A");
 

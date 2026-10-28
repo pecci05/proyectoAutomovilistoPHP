@@ -1,6 +1,12 @@
 <?php
+namespace Dwes\AlquilerMovilidad;
+
+require_once "Dwes/AlquilerMovilidad/Vehiculo.php";
+
 class BicicletaElectrica extends Vehiculo
+
 {
+
     public function __construct(string $titulo
         ,int $numero
         ,float $precio

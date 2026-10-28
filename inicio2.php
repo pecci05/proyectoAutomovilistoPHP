@@ -1,10 +1,14 @@
 <?php
-include_once "Vehiculo.php";
+include_once "Dwes/AlquilerMovilidad/Patinete.php";
+include_once "Dwes/AlquilerMovilidad/BicicletaElectrica.php";
+include_once "Dwes/AlquilerMovilidad/CocheElectrico.php";
+include_once "Dwes/AlquilerMovilidad/Cliente.php";
 
-include_once "Patinete.php";
-include_once "BicicletaElectrica.php";
-include_once "CocheElectrico.php";
-include_once "Cliente.php";
+use Dwes\AlquilerMovilidad\Patinete as Patinete;
+use Dwes\AlquilerMovilidad\BicicletaElectrica as BicicletaElectrica;
+use Dwes\AlquilerMovilidad\CocheElectrico as CocheElectrico;
+use Dwes\AlquilerMovilidad\Cliente as Cliente;
+
 
 //instanciamos un par de objetos cliente
 $cliente1 = new Cliente("Bruce Wayne", 23);

@@ -1,4 +1,7 @@
 <?php
+namespace Dwes\AlquilerMovilidad;
+require_once "Dwes/AlquilerMovilidad/Vehiculo.php";
+
 
 require_once "Cliente.php";
 require_once "Vehiculo.php";
