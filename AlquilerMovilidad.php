@@ -32,7 +32,9 @@ require_once "Patinete.php";
 
         function listarVehiculos()
         {
-            var_dump($this->vehiculos);
+            foreach ($this->vehiculos as $vehiculo){
+                echo $vehiculo->muestraResumen() . "<br>";
+            }
         }
 
         function incluirSocio(string $nombre, int $numMax = 3)
@@ -55,7 +57,9 @@ require_once "Patinete.php";
 
         function listarSocios()
         {
-            var_dump($this->socios);
+            foreach ($this->socios as $socio){
+                echo $socio->muestraResumen();
+            }
         }
     }
 

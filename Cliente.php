@@ -30,8 +30,11 @@ class Cliente
 
     function muestraResumen()
     {
-        echo $this->nombre;
-        echo count($this->vehiculosAlquilados);
+        echo $this->nombre . "<br>";
+        foreach ($this->vehiculosAlquilados as $vehiculo){
+            echo $vehiculo->muestraResumen(). "<br>";
+        }
+        echo "<br>";
     }
 
     function tieneAlquilado(Vehiculo $v): bool
