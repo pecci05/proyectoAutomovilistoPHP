@@ -1,7 +1,6 @@
 <?php
 
-class BicicletaElectrica extends Vehiculo
-{
+class BicicletaElectrica extends Vehiculo implements Resumible{
     public function __construct(
         string $titulo,
         int $numero,

@@ -1,5 +1,7 @@
 <?php
-class Vehiculo{
+
+require_once "Resumible.php";
+abstract class Vehiculo implements Resumible{
     const IVA = 0.21;
     public function __construct(
         public string $titulo,

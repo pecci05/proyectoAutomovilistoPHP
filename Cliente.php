@@ -1,7 +1,9 @@
 <?php
 
 require_once "Vehiculo.php";
-class Cliente{
+require_once "Resumible.php";
+
+class Cliente implements Resumible{
     public function __construct(
         private string $nombre,
         private int $numero,
@@ -34,17 +36,24 @@ class Cliente{
         return in_array($v, $this->vehiculosAlquilados, true);
     }
 
-    public function alquilar(Vehiculo $v):bool{
-        if(!$this->tieneAlquilado($v) && $this->getNumVehiculosAlquilados()<$this->maxAlquilerConcurrente){
-            $this->numVehiculosAlquilados++;
-            $this->vehiculosAlquilados[] = $v;
-            echo "<p>Vehículo ". $v->titulo ." alquilado correctamente</p>";
-            return true;
-        }else{
-            if($this->tieneAlquilado($v)) echo "<p>No se puede alquilar el vehículo ". $v->titulo ." porque ya estaba alquilado</p>";
-            if($this->getNumVehiculosAlquilados()>=$this->maxAlquilerConcurrente) echo "<p>No se puede alquilar el vehículo ". $v->titulo ." porque ya has alcanzado el max de alquileres</p>";
+    public function alquilar(Vehiculo $v): bool {
+        if ($this->tieneAlquilado($v)) {
+            echo "El cliente ya tiene alquilado el vehículo " . $v->titulo . "<br>";
+            return false;
         }
-        return false;
+
+        if ($this->getNumVehiculosAlquilados() >= $this->maxAlquilerConcurrente) {
+            echo "Este cliente tiene " . $this->maxAlquilerConcurrente . " elementos alquilados. No puede alquilar más en este sistema de movilidad hasta que no devuelva algo<br>";
+            return false;
+        }
+
+        $this->numVehiculosAlquilados++;
+        $this->vehiculosAlquilados[] = $v;
+
+        echo "Alquilado vehículo a: " . $this->nombre . "<br>";
+        $v->muestraResumen();
+
+        return true;
     }
 
     public function devolver(int $numVehiculo) :bool{
