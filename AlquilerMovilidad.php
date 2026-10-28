@@ -25,7 +25,8 @@ class AlquilerMovilidad{
     }
 
     public function incluirVehiculo(Vehiculo $v):void{
-
+        $this->vehiculos[] = $v;
+        echo "Vehículo ". $v->titulo . " incluido correctamente";
     }
 
     public function listarVehiculos():void{
@@ -37,6 +38,11 @@ class AlquilerMovilidad{
     }
 
     public function incluirSocio(string $nombre, int $maxAlquilerConcurrente = 3):void{
+        $numCliente = count($this->socios)+1;
+        $nuevoCliente = new Cliente($nombre, $numCliente, $maxAlquilerConcurrente);
+
+        $this->socios[] = $nuevoCliente;
+        echo "Cliente ". $nombre . " incluido correctamente";
 
     }
 
@@ -48,7 +54,18 @@ class AlquilerMovilidad{
         }
     }
 
-    public function alquilarClienteVehiculo(int $numCliente, int $numVehiculo) : void{
+    public function alquilarClienteVehiculo(int $numCliente, int $numVehiculo) : AlquilerMovilidad{
 
+        return $this;
     }
+
+    public function buscaCliente(int $numCliente) : Cliente|null {
+        foreach($this->socios as $socio){
+            if($socio->getNumero() == $numCliente){
+                return $socio;
+            }
+        }
+        return null;
+    }
+
 }
