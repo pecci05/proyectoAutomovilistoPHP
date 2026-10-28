@@ -1,5 +1,6 @@
 <?php
-class Patinete extends Vehiculo implements Resumible{
+namespace Model\Vehiculos;
+class Patinete extends Vehiculo{
     public function  __construct(
         string $titulo,
         int $numero,

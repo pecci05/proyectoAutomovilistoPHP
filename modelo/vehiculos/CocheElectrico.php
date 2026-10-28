@@ -1,7 +1,7 @@
 <?php
+namespace Model\Vehiculos;
 
-
-class CocheElectrico extends Vehiculo implements Resumible{
+class CocheElectrico extends Vehiculo{
     public function __construct(
         string  $titulo,
         int    $numero,

@@ -1,4 +1,12 @@
 <?php
+namespace Model;
+
+use Model\Vehiculos\CocheElectrico;
+use Model\Vehiculos\BicicletaElectrica;
+use Model\Vehiculos\Patinete;
+use Model\Vehiculos\Vehiculo;
+use Model\Cliente;
+
 require_once "modelo/vehiculos/Vehiculo.php";
 require_once "modelo/Cliente.php";
 require_once "modelo/vehiculos/CocheElectrico.php";
@@ -11,7 +19,7 @@ class AlquilerMovilidad{
         /** @var Vehiculo[] */
         private array $vehiculos = [],
         /** @var Cliente[] */
-        private array $socios = []
+        private array $clientes = []
     ){}
 
 
@@ -47,18 +55,18 @@ class AlquilerMovilidad{
         }
     }
 
-    public function incluirSocio(string $nombre, int $maxAlquilerConcurrente = 3):void{
-        $numCliente = count($this->socios)+1;
+    public function incluirCliente(string $nombre, int $maxAlquilerConcurrente = 3):void{
+        $numCliente = count($this->clientes)+1;
         $nuevoCliente = new Cliente($nombre, $numCliente, $maxAlquilerConcurrente);
 
-        $this->socios[] = $nuevoCliente;
-        echo "Incluido socio " . count($this->socios) . "<br>";
+        $this->clientes[] = $nuevoCliente;
+        echo "Incluido socio " . count($this->clientes) . "<br>";
 
     }
 
-    public function listarSocios():void{
-        echo "Listado de " . count($this->socios) . " socios del videoclub:<br>";
-        foreach($this->socios as $socio){
+    public function listarClientes():void{
+        echo "Listado de " . count($this->clientes) . " socios del videoclub:<br>";
+        foreach($this->clientes as $socio){
             echo "<li>";
             $socio->muestraResumen();
             echo "</li>";
@@ -80,7 +88,7 @@ class AlquilerMovilidad{
     }
 
     public function buscaCliente(int $numCliente) : Cliente|null {
-        foreach($this->socios as $socio){
+        foreach($this->clientes as $socio){
             if($socio->getNumero() == $numCliente){
                 return $socio;
             }

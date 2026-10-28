@@ -1,7 +1,8 @@
 <?php
+namespace Model\Vehiculos;
 
-require_once "interfaz/Resumible.php";
-abstract class Vehiculo implements Resumible{
+require_once __DIR__ . "/../../interfaz/Resumible.php";
+abstract class Vehiculo implements \Resumible{
     const IVA = 0.21;
     public function __construct(
         public string $titulo,

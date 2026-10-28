@@ -1,6 +1,13 @@
 <?php
 require_once "modelo/AlquilerMovilidad.php"; // No incluimos nada más
 
+use Model\Vehiculos\BicicletaElectrica as BicicletaElectrica;
+use Model\Vehiculos\CocheElectrico as CocheElectrico;
+use Model\Vehiculos\Patinete as Patinete;
+use Model\Vehiculos\Vehiculo as Vehiculo;
+use Model\Cliente as Cliente;
+use Model\AlquilerMovilidad as AlquilerMovilidad;
+
 $am = new AlquilerMovilidad("Severo 8A");
 
 //voy a incluir unos cuantos vehículos de prueba
@@ -15,11 +22,11 @@ $am->incluirPatinete("Xiaomi Pro 2", 3.5, 45);
 $am->listarVehiculos();
 
 //voy a crear algunos socios
-$am->incluirSocio("Amancio Ortega");
-$am->incluirSocio("Pablo Picasso", 2);
+$am->incluirCliente("Amancio Ortega");
+$am->incluirCliente("Pablo Picasso", 2);
 
 $am->alquilarClienteVehiculo(1,2)->alquilarClienteVehiculo(1,3)
     ->alquilarClienteVehiculo(1,2)->alquilarClienteVehiculo(1,6);
 
 //listo los socios
-$am->listarSocios();
+$am->listarClientes();

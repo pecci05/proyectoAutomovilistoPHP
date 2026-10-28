@@ -1,9 +1,12 @@
 <?php
+namespace Model;
+
+use Model\Vehiculos\Vehiculo;
 
 require_once "modelo/vehiculos/Vehiculo.php";
-require_once "interfaz/Resumible.php";
+require_once __DIR__ . "/../interfaz/Resumible.php";
 
-class Cliente implements Resumible{
+class Cliente implements \Resumible{
     public function __construct(
         private string $nombre,
         private int $numero,
