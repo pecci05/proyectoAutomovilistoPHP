@@ -1,6 +1,6 @@
 <?php
 
-require_once "Resumible.php";
+require_once "interfaz/Resumible.php";
 abstract class Vehiculo implements Resumible{
     const IVA = 0.21;
     public function __construct(

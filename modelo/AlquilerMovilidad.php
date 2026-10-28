@@ -1,9 +1,9 @@
 <?php
-require_once "Vehiculo.php";
-require_once "Cliente.php";
-require_once "CocheElectrico.php";
-require_once "BicicletaElectrica.php";
-require_once "Patinete.php";
+require_once "modelo/vehiculos/Vehiculo.php";
+require_once "modelo/Cliente.php";
+require_once "modelo/vehiculos/CocheElectrico.php";
+require_once "modelo/vehiculos/BicicletaElectrica.php";
+require_once "modelo/vehiculos/Patinete.php";
 
 class AlquilerMovilidad{
     public function __construct(
@@ -65,13 +65,13 @@ class AlquilerMovilidad{
         }
     }
 
-    public function alquilarClienteVehiculo(int $numCliente, int $numVehiculo) : AlquilerMovilidad|null{
+    public function alquilarClienteVehiculo(int $numCliente, int $numVehiculo) : AlquilerMovilidad{
         $cliente = $this->buscaCliente($numCliente);
         $vehiculo = $this->buscaVehiculo($numVehiculo);
 
         if ($cliente === null || $vehiculo === null) {
             echo "<p>Error: Cliente o vehículo no encontrado</p>";
-            return null;
+            return $this;
         }
 
         $cliente->alquilar($vehiculo);

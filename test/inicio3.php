@@ -1,5 +1,5 @@
 <?php
-require_once "AlquilerMovilidad.php"; // No incluimos nada más
+require_once "modelo/AlquilerMovilidad.php"; // No incluimos nada más
 
 $am = new AlquilerMovilidad("Severo 8A");
 
@@ -18,14 +18,8 @@ $am->listarVehiculos();
 $am->incluirSocio("Amancio Ortega");
 $am->incluirSocio("Pablo Picasso", 2);
 
-$am->alquilarClienteVehiculo(1,2);
-$am->alquilarClienteVehiculo(1,3);
-//alquilo otra vez el vehículo 2 al socio 1.
-// no debe dejarme porque ya lo tiene alquilado
-$am->alquilarClienteVehiculo(1,2);
-//alquilo el vehículo 6 al socio 1.
-//no se puede porque el socio 1 tiene 2 alquileres como máximo
-$am->alquilarClienteVehiculo(1,6);
+$am->alquilarClienteVehiculo(1,2)->alquilarClienteVehiculo(1,3)
+    ->alquilarClienteVehiculo(1,2)->alquilarClienteVehiculo(1,6);
 
 //listo los socios
 $am->listarSocios();

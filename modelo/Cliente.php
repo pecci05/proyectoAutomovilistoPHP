@@ -1,7 +1,7 @@
 <?php
 
-require_once "Vehiculo.php";
-require_once "Resumible.php";
+require_once "modelo/vehiculos/Vehiculo.php";
+require_once "interfaz/Resumible.php";
 
 class Cliente implements Resumible{
     public function __construct(
