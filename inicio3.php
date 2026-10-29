@@ -21,6 +21,8 @@ $am->incluirCliente("Amancio Ortega");
 $am->incluirCliente("Pablo Picasso", 2);
 
 try {
+//    $am->alquilarClienteVehiculos(1,[2,3,2,6]);
+
     $am->alquilarClienteVehiculo(1,2);
     $am->alquilarClienteVehiculo(1,3);
 //alquilo otra vez el vehículo 2 al cliente 1.
@@ -29,8 +31,6 @@ try {
 //alquilo el vehículo 6 al cliente 1.
 //no se puede porque el cliente 1 tiene 2 alquileres como máximo
     $am->alquilarClienteVehiculo(1,6);
-
-    $am->
 }catch (Exception $e){
     echo $e;
 }

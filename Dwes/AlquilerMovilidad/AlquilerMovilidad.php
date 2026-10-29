@@ -94,6 +94,49 @@ class AlquilerMovilidad
             echo $socio->muestraResumen();
         }
     }
+
+    function alquilarClienteVehiculos(int $numCliente, array $numerosVehiculos){
+        $cliente = array_values(array_filter($this->socios, fn(Cliente $c) => $c->getNumero() == $numCliente));
+        if (count($cliente) == 0){
+            throw new ClienteNoEncontradoException();
+        }
+
+        foreach ($numerosVehiculos as $num){
+            $vehiculo = array_values(array_filter($this->vehiculos, fn(Vehiculo $v) => $v->getNumero() == $num && !$v->alquilado));
+
+            if (count($vehiculo) == 0){
+                throw new VehiculoNoEncontradoException();
+            }
+        }
+    }
+
+    function devolverClienteVehiculo(int $numCliente, int $numeroVehiculo)
+    {
+        $cliente = array_values(array_filter($this->socios, fn(Cliente $c) => $c->getNumero() == $numCliente));
+
+
+        if (count($cliente) == 0){
+            throw new ClienteNoEncontradoException();
+        }
+
+        return $cliente[0]->devolver($numeroVehiculo);
+    }
+
+    function devolverClienteVehiculos(int $numCliente, array $numerosVehiculos)
+    {
+        $array = [];
+        $cliente = array_values(array_filter($this->socios, fn(Cliente $c) => $c->getNumero() == $numCliente));
+
+
+        if (count($cliente) == 0){
+            throw new ClienteNoEncontradoException();
+        }
+
+        foreach ($numerosVehiculos as $num){
+            $array[] = $cliente[0]->devolver($num);
+        }
+        return $array;
+    }
 }
 
 

@@ -71,7 +71,7 @@ class Cliente
 
     }
 
-    public function devolver(int $numVehiculo): bool
+    public function devolver(int $numVehiculo): ?Vehiculo
     {
         $vehiculo = array_filter($this->vehiculosAlquilados, fn(Vehiculo $v) => $v->getNumero() == $numVehiculo);
         $position = array_search($this->vehiculosAlquilados, $vehiculo);
@@ -80,9 +80,9 @@ class Cliente
             array_splice($this->vehiculosAlquilados, $position, 1);
             $this->numVehiculosAlquilados--;
             $vehiculo->alquilado = false;
-            return true;
+            return $vehiculo;
         } else {
-            return false;
+            return null;
         }
     }
 
