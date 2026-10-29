@@ -1,6 +1,8 @@
 <?php
 namespace Dwes\AlquilerMovilidad\Util;
-class VehiculoYaAlquiladoException extends \Dwes\AlquilerMovilidad\Util\AlquilerMovilidadException
+require_once "AlquilerMovilidadException.php";
+
+class VehiculoYaAlquiladoException extends AlquilerMovilidadException
 {
     public function __construct(string $message = "", int $code = 0, ?\Throwable $previous = null)
     {

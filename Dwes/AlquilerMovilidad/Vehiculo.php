@@ -13,7 +13,8 @@ abstract class Vehiculo implements Resumible
     public function __construct(
         public string $titulo,
         private int   $numero,
-        private float $precio
+        private float $precio,
+        public bool $alquilado = false
     )
     {
     }

@@ -1,7 +1,8 @@
 <?php
 
 namespace Dwes\AlquilerMovilidad\Util;
-class ClienteNoEncontradoException extends \Dwes\AlquilerMovilidad\Util\AlquilerMovilidadException
+require_once "AlquilerMovilidadException.php";
+class ClienteNoEncontradoException extends AlquilerMovilidadException
 {
     public function __construct(string $message = "", int $code = 0, ?\Throwable $previous = null)
     {

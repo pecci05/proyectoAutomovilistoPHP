@@ -1,6 +1,12 @@
 <?php
 namespace Dwes\AlquilerMovilidad;
 
+require_once "Util/CupoSuperadoException.php";
+require_once "Util/VehiculoYaAlquiladoException.php";
+
+use Dwes\AlquilerMovilidad\Util\CupoSuperadoException;
+use Dwes\AlquilerMovilidad\Util\VehiculoYaAlquiladoException;
+
 
 class Cliente
 {
@@ -46,16 +52,23 @@ class Cliente
 
     public function alquilar(Vehiculo $v): bool
     {
-        if (!in_array($v, $this->vehiculosAlquilados,true) && count($this->vehiculosAlquilados) <= $this->maxAlquilerConcurrente) {
+        if (count($this->vehiculosAlquilados) == $this->maxAlquilerConcurrente){
+            throw new CupoSuperadoException();
+            return false;
+        }
+
+        if (in_array($v, $this->vehiculosAlquilados,true)){
+            throw new VehiculoYaAlquiladoException();
+            return false;
+        }
+
             $this->numVehiculosAlquilados++;
             echo "<p> Se ha sumado 1 a vehiculos alquilados</p>";
             $this->vehiculosAlquilados[] = $v;
             echo "<p> Se ha añadido el vehiculo al array</p>";
+            $v->alquilado = true;
             return true;
-        } else {
-            echo "<p> No se puede alquilar el vehiculo </p>";
-            return false;
-        }
+
     }
 
     public function devolver(int $numVehiculo): bool
@@ -66,6 +79,7 @@ class Cliente
         if (in_array($vehiculo, $this->vehiculosAlquilados,true)) {
             array_splice($this->vehiculosAlquilados, $position, 1);
             $this->numVehiculosAlquilados--;
+            $vehiculo->alquilado = false;
             return true;
         } else {
             return false;

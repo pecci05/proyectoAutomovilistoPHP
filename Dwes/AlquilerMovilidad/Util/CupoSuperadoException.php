@@ -1,7 +1,9 @@
 <?php
 
 namespace Dwes\AlquilerMovilidad\Util;
-class CupoSuperadoException extends \Dwes\AlquilerMovilidad\Util\AlquilerMovilidadException
+require_once "AlquilerMovilidadException.php";
+
+class CupoSuperadoException extends AlquilerMovilidadException
 {
     public function __construct(string $message = "", int $code = 0, ?\Throwable $previous = null)
     {
