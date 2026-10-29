@@ -1,8 +1,6 @@
 <?php
 namespace Dwes\AlquilerMovilidad;
 require_once "Dwes/AlquilerMovilidad/Vehiculo.php";
-
-
 require_once "Cliente.php";
 require_once "Vehiculo.php";
 require_once "CocheElectrico.php";
@@ -10,8 +8,16 @@ require_once "BicicletaElectrica.php";
 require_once "Patinete.php";
     class AlquilerMovilidad
     {
-        private array $vehiculos = [];
-        private array $socios = [];
+
+        public function __construct(
+            private string $direccion,
+            private array $vehiculos = [],
+            private array $socios = [],
+            private int $numVehiculosAlquilados = 0,
+            private int $numTotalAlquileres = 0
+        )
+        {
+        }
 
         private function incluirVehiculo(Vehiculo $vehiculo)
         {
@@ -40,7 +46,7 @@ require_once "Patinete.php";
             }
         }
 
-        function incluirSocio(string $nombre, int $numMax = 3)
+        function incluirCliente(string $nombre, int $numMax = 3)
         {
             $this->socios[] = new Cliente($nombre,count($this->socios),$numMax);
         }
@@ -52,6 +58,9 @@ require_once "Patinete.php";
 //            echo "HOLA <p>" . count($cliente) . "</p>";
 
             if (count($vehiculo) != 0 && count($cliente) != 0){
+                $this->numVehiculosAlquilados++;
+                $this->numTotalAlquileres++;
+
                 $cliente[0]->alquilar($vehiculo[0]);
                 return $this;
             }else{
@@ -60,7 +69,7 @@ require_once "Patinete.php";
             }
         }
 
-        function listarSocios()
+        function listarClientes()
         {
             foreach ($this->socios as $socio){
                 echo $socio->muestraResumen();

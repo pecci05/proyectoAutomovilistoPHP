@@ -1,8 +1,9 @@
 <?php
+use Dwes\AlquilerMovilidad\AlquilerMovilidad;
 
-include_once "Dwes/AlquilerMovilidad/AlquilerMovilidad.php"; // No incluimos nada más
+include_once "Dwes\AlquilerMovilidad\AlquilerMovilidad.php"; // No incluimos nada más
 
-$am = new AlquilerMovilidad("Severo 8A");
+$am = new AlquilerMovilidad("Martos Sur");
 
 //voy a incluir unos cuantos vehículos de prueba
 $am->incluirCocheElectrico("Tesla Model 3", 19.99, "Tesla Model 3", 5, 5);
@@ -15,15 +16,21 @@ $am->incluirPatinete("Xiaomi Pro 2", 3.5, 45);
 //listo los vehículos
 $am->listarVehiculos();
 
-//voy a crear algunos socios
-$am->incluirSocio("Amancio Ortega");
-$am->incluirSocio("Pablo Picasso", 2);
+//voy a crear algunos clientes
+$am->incluirCliente("Amancio Ortega");
+$am->incluirCliente("Pablo Picasso", 2);
 
+$am->alquilarClienteVehiculo(1,2);
+$am->alquilarClienteVehiculo(1,3);
+//alquilo otra vez el vehículo 2 al cliente 1.
+// no debe dejarme porque ya lo tiene alquilado
+$am->alquilarClienteVehiculo(1,2);
+//alquilo el vehículo 6 al cliente 1.
+//no se puede porque el cliente 1 tiene 2 alquileres como máximo
+$am->alquilarClienteVehiculo(1,6);
 
-$am->alquilarClienteVehiculo(1, 2)->alquilarClienteVehiculo(1, 3)->alquilarClienteVehiculo(1, 2)->alquilarClienteVehiculo(1, 6);
-
-//listo los socios
-$am->listarSocios();
+//listo los clientes
+$am->listarClientes();
 
 
 
