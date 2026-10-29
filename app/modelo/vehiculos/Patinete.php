@@ -1,5 +1,6 @@
 <?php
-namespace Model\Vehiculos;
+namespace modelo\vehiculos;
+
 class Patinete extends Vehiculo{
     public function  __construct(
         string $titulo,

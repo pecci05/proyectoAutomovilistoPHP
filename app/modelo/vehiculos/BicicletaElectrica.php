@@ -1,6 +1,7 @@
 <?php
 
-namespace Model\Vehiculos;
+namespace modelo\vehiculos;
+
 class BicicletaElectrica extends Vehiculo{
     public function __construct(
         string $titulo,

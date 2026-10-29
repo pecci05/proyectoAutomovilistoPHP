@@ -1,5 +1,5 @@
 <?php
-namespace Model\Vehiculos;
+namespace modelo\vehiculos;
 
 class CocheElectrico extends Vehiculo{
     public function __construct(

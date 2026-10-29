@@ -1,5 +1,6 @@
 <?php
-//namespace Interfaz;
-interface Resumible {
+namespace interfaz;
+interface Resumible
+{
     public function muestraResumen(): void;
 }

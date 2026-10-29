@@ -1,12 +1,17 @@
 <?php
-namespace Model;
-
-use Model\Vehiculos\Vehiculo;
+namespace modelo;
 
 require_once "modelo/vehiculos/Vehiculo.php";
-require_once __DIR__ . "/../interfaz/Resumible.php";
+require_once "interfaz/Resumible.php";
+require_once "excepciones/AlquilerMovilidadException.php";
+require_once "excepciones/VehiculoYaAlquiladoException.php";
+use \interfaz\Resumible;
+use modelo\vehiculos\Vehiculo;
+use Dwes\AlquilerMovilidad\Util\AlquilerMovilidadException;
+use Dwes\AlquilerMovilidad\Util\VehiculoYaAlquiladoException;
+use Dwes\AlquilerMovilidad\Util\VehiculoNoEncontradoException;
 
-class Cliente implements \Resumible{
+class Cliente implements Resumible{
     public function __construct(
         private string $nombre,
         private int $numero,
@@ -30,6 +35,13 @@ class Cliente implements \Resumible{
         return $this->numVehiculosAlquilados;
     }
 
+    public function getVehiculosAlquilados(): array
+    {
+        return $this->vehiculosAlquilados;
+    }
+
+
+
     public function tieneAlquilado(Vehiculo $v) : bool {
 //        foreach($this->vehiculosAlquilados as $vehiculo){
 //            if($v == $vehiculo) return true;
@@ -39,15 +51,15 @@ class Cliente implements \Resumible{
         return in_array($v, $this->vehiculosAlquilados, true);
     }
 
-    public function alquilar(Vehiculo $v): bool {
+    public function alquilar(Vehiculo $v): Cliente {
         if ($this->tieneAlquilado($v)) {
-            echo "El cliente ya tiene alquilado el vehículo " . $v->titulo . "<br>";
+            throw new VehiculoYaAlquiladoException("El cliente ya tiene alquilado el vehículo " . $v->titulo);
             return false;
         }
 
         if ($this->getNumVehiculosAlquilados() >= $this->maxAlquilerConcurrente) {
             echo "Este cliente tiene " . $this->maxAlquilerConcurrente . " elementos alquilados. No puede alquilar más en este sistema de movilidad hasta que no devuelva algo<br>";
-            return false;
+            return $this;
         }
 
         $this->numVehiculosAlquilados++;
@@ -56,20 +68,21 @@ class Cliente implements \Resumible{
         echo "Alquilado vehículo a: " . $this->nombre . "<br>";
         $v->muestraResumen();
 
-        return true;
+        return $this;
     }
 
-    public function devolver(int $numVehiculo) :bool{
+    public function devolver(int $numVehiculo) :Cliente{
         foreach($this->vehiculosAlquilados as $indice => $vehiculo){
             if($vehiculo->getNumero() == $numVehiculo) {
                 echo "<p>El vehículo " . $vehiculo->titulo . " estaba alquilado y ha sido devuelto</p>";
                 $this->numVehiculosAlquilados--;
                 array_splice($this->vehiculosAlquilados, $indice, 1);
-                return true;
+                return $this;
             }
         }
-        echo "<p>El vehículo con número ". $numVehiculo ." no estaba alquilado por lo que no se puede devolver</p>";
-        return false;
+
+        throw new VehiculoNoEncontradoException("El vehículo con número ". $numVehiculo ." no estaba alquilado por lo que no se puede devolver");
+        return $this;
     }
 
     public function listaAlquileres(): void{
